@@ -1,0 +1,7 @@
+<section class="maps">
+  <p-card class="card"  *ngFor="let country of countries | paginate: { itemsPerPage: 10, currentPage: p }">
+    <img  [src]="country.flags.png" alt="">
+  </p-card>
+</section>
+
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
