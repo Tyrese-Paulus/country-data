@@ -1,0 +1,14 @@
+.maps{
+  display: flex;
+  flex-direction: row;
+  background-color: grey;
+}
+
+.card{
+  margin: 20px;
+}
+
+.card img{
+  width: 250px;
+  height: 250px;
+}
