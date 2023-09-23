@@ -5,22 +5,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { TableModule } from 'primeng/table';
-import { MapGridComponent } from './components/map-grid/map-grid/map-grid.component';
 import { CardModule } from 'primeng/card';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CountryGridComponent } from './components/country-grid/country-grid.component';
+
+import { HttpClientModule } from '@angular/common/http';
+import {NgxPaginationModule} from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapGridComponent
+    CountryGridComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TableModule,
     BrowserAnimationsModule,
-    CardModule
+    CardModule,
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
