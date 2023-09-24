@@ -11,6 +11,9 @@ import { Subject } from 'rxjs';
 })
 export class CountryGridComponent implements OnInit {
 
+  cities: any = [];
+  selectedCity: any;
+
   p: number = 1;
   countries: any = [] ;
   endsubs$: Subject<any> = new Subject();
@@ -25,6 +28,8 @@ export class CountryGridComponent implements OnInit {
   fifa: boolean = false;
   currentTime: any;
   options: any;
+  nameValue:any;
+  fifaValue: any;
 
   constructor(private countryService: CountryService) { }
 
@@ -32,6 +37,15 @@ export class CountryGridComponent implements OnInit {
     this.countryService.getCountries().pipe(takeUntil(this.endsubs$)).subscribe((country) => {
       this.countries = country
     })
+
+    this.cities = [
+      {name: 'Africa', code: 'africa'},
+      {name: 'Americas', code: 'americas'},
+      {name: 'Europe', code: 'europe'},
+      {name: 'Oceania', code: 'oceania'},
+      {name: 'Asia', code: 'asia'},
+      {name: 'Antarctic', code: 'antarctic'},
+    ]
   }
 
   showDialogue(){
@@ -53,6 +67,7 @@ export class CountryGridComponent implements OnInit {
       }
 
       console.log(this.selectedCountry[0]);
+
 
 
     })
@@ -77,5 +92,26 @@ export class CountryGridComponent implements OnInit {
 
   }
 
+  getRegion(selectedRegion: any){
+    console.log(selectedRegion.value.code);
+    this.countryService.getCountryRegion(selectedRegion.value.code).pipe(takeUntil(this.endsubs$)).subscribe((regionalCountries) =>{
+      this.countries = regionalCountries;
+    })
+  }
 
+  getName(){
+    console.log(this.nameValue);
+    this.countryService.getCountryName(this.nameValue).pipe(takeUntil(this.endsubs$)).subscribe((countryByName) => {
+      this.countries = countryByName;
+    })
+  }
+
+  getFifa(){
+    console.log(this.fifaValue);
+    this.countryService.getCountryFifa(this.fifaValue).pipe(takeUntil(this.endsubs$)).subscribe((countryByCode: any) => {
+      this.countries = countryByCode
+    })
+
+  }
 }
+

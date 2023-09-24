@@ -13,7 +13,9 @@ import { CountryGridComponent } from './components/country-grid/country-grid.com
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { DialogModule } from 'primeng/dialog';
-
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +31,10 @@ import { DialogModule } from 'primeng/dialog';
     CardModule,
     HttpClientModule,
     NgxPaginationModule,
-    DialogModule
+    DialogModule,
+    DropdownModule,
+    InputTextModule,
+    FormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
   ,
