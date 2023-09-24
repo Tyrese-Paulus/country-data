@@ -58,3 +58,11 @@
 </section>
 
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<p-dropdown (onChange)="getRegion($event)" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a Region"></p-dropdown>
+
+<input type="text" pInputText [(ngModel)]="nameValue" placeHolder="Search by Name" />
+<button (click)="getName()">Search</button>
+
+<input type="text" pInputText [(ngModel)]="fifaValue" placeHolder="Search by Fifa code" />
+<button (click)="getFifa()">Search</button>
