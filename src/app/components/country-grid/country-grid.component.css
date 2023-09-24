@@ -1,16 +1,107 @@
-.maps{
+.flags{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 20vw);
+  grid-gap: 20px;
+}
+
+.info{
+  height: 370px;
+  background-color: rgb(220,220,220);
+  border-radius: 0 0 5px 5px;
+  cursor: pointer;
+}
+
+.info img{
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.info h3{
+  font-family: Arial, sans-serif;
+  text-align: center;
+
+}
+
+.navigation{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  background-color: grey;
+  justify-content: right;
+  margin-top: 20px;
 }
 
-.card{
-  margin: 20px;
+.navigation input{
+  border-radius: 5px;
 }
 
-.card img{
-  width: 250px;
-  height: 250px;
+.navigation p-dropdown, input, button {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
+.navigation button {
+  font-family: sans-serif;
+  display: inline-block;
+  background: #339DFF;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 38px;
+  border-radius: 50px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 170px;
+  text-align: center;
+  border: none;
+}
+
+.navigation button:hover {
+  background: #fff;
+  color: #339DFF;
+  box-shadow: 0 4px 4px rgba(83, 100, 255, 0.32);
+  cursor: pointer;
+}
+
+.countries ul{
+  list-style-type: none;
+}
+
+.countries li{
+  /* font-family: Arial, sans-serif; */
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.property{
+  font-weight: 600;
+}
+
+.countries a {
+  color: #495057;
+  text-decoration: none;
+}
+
+.page_controls{
+  font-family: sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
+
+header{
+  height: 60px;
+  width: 100%;
+  background-color: #339DFF;
+  color: #fff;
+  margin: 0;
+  display: flex;
+  justify-content: left;
+}
+
+header span {
+  font-size: 40px;
+  margin-top: auto;
+  margin-bottom: auto;
+  cursor: pointer;
+}

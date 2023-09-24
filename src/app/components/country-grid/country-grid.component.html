@@ -1,68 +1,79 @@
-<section class="maps">
-  <p-card class="card"  *ngFor="let country of countries | paginate: { itemsPerPage: 10, currentPage: p }">
-    <img  (click)="selectCountry(country.ccn3)" (click)="showDialogue()"  [src]="country.flags.png" alt="">
-    <h2>{{country.name.common}}</h2>
-    <p-dialog *ngIf="selectedCountry" header="{{selectedCountry[0].name.common}}" [(visible)]="visible" [draggable]="false"  [style]="{width: '50vw'}">
-      <ul>
+<header>
+  <span (click)="getCountries()">
+    Country-Data
+  </span>
+</header>
 
+<nav class="navigation">
+
+  <p-dropdown (onChange)="getRegion($event)" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a Region"></p-dropdown>
+
+  <input type="text" pInputText [(ngModel)]="nameValue" placeHolder="Search by Name" />    <button (click)="getName()">Search</button>
+
+  <input type="text" pInputText [(ngModel)]="fifaValue" placeHolder="Search by Fifa code" />  <button (click)="getFifa()">Search</button>
+
+</nav>
+
+<article class="flags">
+
+  <section class="countries" *ngFor="let country of countries | paginate: { itemsPerPage: 8, currentPage: p }">
+
+    <section class="info" (click)="selectCountry(country.ccn3)" (click)="showDialogue()">
+      <img [src]="country.flags.png" alt="">
+      <h3>{{country.name.common}}</h3>
+    </section>
+
+    <p-dialog *ngIf="selectedCountry" header="{{selectedCountry[0].name.common}}" [(visible)]="visible" [draggable]="false"  [style]="{width: '20vw'}">
+      <ul>
         <li>
-            <span>Common name: </span>
+            <span class="property">Common name: </span>
             <span *ngIf="selectedCountry">{{selectedCountry[0].name.common}}</span>
         </li>
 
         <li>
-          <span>Region: </span>
+          <span class="property">Region: </span>
           <span *ngIf="selectedCountry">{{selectedCountry[0].region}}</span>
         </li>
 
         <li *ngIf="fifa">
-          <span>Fifa code: </span>
+          <span class="property">Fifa code: </span>
           <span *ngIf="selectedCountry">{{selectedCountry[0].fifa}}</span>
         </li>
 
         <li>
-          <span>Population: </span>
+          <span class="property">Population: </span>
           <span *ngIf="selectedCountry">{{selectedCountry[0].population.toLocaleString('en')}}</span>
         </li>
 
         <li>
-          <span>Languages: </span>
+          <span class="property">Languages: </span>
           <span *ngIf="selectedCountry">
             {{selectedLanguages}}
           </span>
         </li>
 
         <li>
-          <span>Time zone: </span>
+          <span class="property">Time zone: </span>
           <span *ngIf="selectedCountry">{{selectedCountry[0].timezones}}</span>
         </li>
 
         <li>
-          <span>Capital city: </span>
+          <span class="property">Capital city: </span>
           <span *ngIf="selectedCountry">{{selectedCountry[0].capital}}</span>
         </li>
 
         <li>
-          <span>Currencies: </span>
+          <span class="property">Currencies: </span>
           <span *ngIf="selectedCountry">{{countryCurrencies}}</span>
         </li>
 
         <li>
-          <span>Map: </span>
-          <a *ngIf="selectedCountry" href="{{selectedCountry[0].maps.googleMaps}}" target="_blank">Link</a>
+          <span class="property">Map: </span>
+          <a *ngIf="selectedCountry" href="{{selectedCountry[0].maps.googleMaps}}" target="_blank">GoogleMaps Link</a>
         </li>
 
       </ul>
   </p-dialog>
-  </p-card>
-</section>
-
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
-
-<p-dropdown (onChange)="getRegion($event)" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a Region"></p-dropdown>
-
-<input type="text" pInputText [(ngModel)]="nameValue" placeHolder="Search by Name" />
-<button (click)="getName()">Search</button>
-
-<input type="text" pInputText [(ngModel)]="fifaValue" placeHolder="Search by Fifa code" />
-<button (click)="getFifa()">Search</button>
+  </section>
+</article>
+<pagination-controls class="page_controls" (pageChange)="p = $event"></pagination-controls>

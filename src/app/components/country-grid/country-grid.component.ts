@@ -34,9 +34,7 @@ export class CountryGridComponent implements OnInit {
   constructor(private countryService: CountryService) { }
 
   ngOnInit(): void{
-    this.countryService.getCountries().pipe(takeUntil(this.endsubs$)).subscribe((country) => {
-      this.countries = country
-    })
+    this.getCountries()
 
     this.cities = [
       {name: 'Africa', code: 'africa'},
@@ -90,6 +88,12 @@ export class CountryGridComponent implements OnInit {
       }
     })
 
+  }
+
+  getCountries(){
+    this.countryService.getCountries().pipe(takeUntil(this.endsubs$)).subscribe((country) => {
+      this.countries = country
+    })
   }
 
   getRegion(selectedRegion: any){
