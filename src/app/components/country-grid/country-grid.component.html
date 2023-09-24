@@ -1,6 +1,58 @@
 <section class="maps">
   <p-card class="card"  *ngFor="let country of countries | paginate: { itemsPerPage: 10, currentPage: p }">
-    <img  [src]="country.flags.png" alt="">
+    <img  (click)="selectCountry(country.ccn3)" (click)="showDialogue()"  [src]="country.flags.png" alt="">
+    <p-dialog header="Header" [(visible)]="visible" [draggable]="false"  [style]="{width: '50vw'}">
+      <ul>
+
+        <li>
+            <span>Common name: </span>
+            <span *ngIf="selectedCountry">{{selectedCountry[0].name.common}}</span>
+        </li>
+
+        <li>
+          <span>Region: </span>
+          <span *ngIf="selectedCountry">{{selectedCountry[0].region}}</span>
+        </li>
+
+        <li *ngIf="fifa">
+          <span>Fifa code: </span>
+          <span *ngIf="selectedCountry">{{selectedCountry[0].fifa}}</span>
+        </li>
+
+        <li>
+          <span>Population: </span>
+          <span *ngIf="selectedCountry">{{selectedCountry[0].population.toLocaleString('en')}}</span>
+        </li>
+
+        <li>
+          <span>Languages: </span>
+          <span *ngIf="selectedCountry">
+            {{selectedLanguages}}
+          </span>
+        </li>
+
+        <li>
+          <span>Time zone: </span>
+          <span *ngIf="selectedCountry">{{selectedCountry[0].timezones}}</span>
+        </li>
+
+        <li>
+          <span>Time zone: </span>
+          <span *ngIf="selectedCountry">{{selectedCountry[0].timezones}}</span>
+        </li>
+
+        <li>
+          <span>Capital city: </span>
+          <span *ngIf="selectedCountry">{{selectedCountry[0].capital}}</span>
+        </li>
+
+        <li>
+          <span>Currencies: </span>
+          <span *ngIf="selectedCountry">{{countryCurrencies}}</span>
+        </li>
+
+      </ul>
+  </p-dialog>
   </p-card>
 </section>
 
