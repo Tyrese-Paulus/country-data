@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,8 @@ import { CountryGridComponent } from './components/country-grid/country-grid.com
 
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { DialogModule } from 'primeng/dialog';
+
 
 
 @NgModule({
@@ -26,8 +28,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     BrowserAnimationsModule,
     CardModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    DialogModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+  ,
   providers: [],
   bootstrap: [AppComponent]
 })

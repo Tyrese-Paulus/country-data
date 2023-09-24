@@ -8,7 +8,8 @@ describe('CountryGridComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [CountryGridComponent]
+      declarations: [CountryGridComponent],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
     });
     fixture = TestBed.createComponent(CountryGridComponent);
     component = fixture.componentInstance;
