@@ -52,11 +52,7 @@ export class CountryGridComponent implements OnInit {
         this.fifa = false
       }
 
-      console.log(this.selectedCountry[0].timezones);
-
-      this.currentTime = new Date(this.selectedCountry[0].timezones)
-      console.log(this.currentTime);
-
+      console.log(this.selectedCountry[0]);
 
 
     })
