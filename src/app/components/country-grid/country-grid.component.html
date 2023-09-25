@@ -6,7 +6,7 @@
 
 <nav class="navigation">
 
-  <p-dropdown (onChange)="getRegion($event)" [options]="cities" [(ngModel)]="selectedCity" optionLabel="name" placeholder="Select a Region"></p-dropdown>
+  <p-dropdown (onChange)="getRegion($event)" [options]="regions" optionLabel="name" placeholder="Select a Region"></p-dropdown>
 
   <input type="text" pInputText [(ngModel)]="nameValue" placeHolder="Search by Name" />    <button (click)="getName()">Search</button>
 
