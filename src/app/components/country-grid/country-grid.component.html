@@ -6,6 +6,8 @@
 
 <nav class="navigation">
 
+  <button routerLink="/favorites">Favorites</button>
+
   <p-dropdown (onChange)="getRegion($event)" [options]="regions" optionLabel="name" placeholder="Select a Region"></p-dropdown>
 
   <input type="text" pInputText [(ngModel)]="nameValue" placeHolder="Search by Name" />    <button (click)="getName()">Search</button>
@@ -18,9 +20,10 @@
 
   <section class="countries" *ngFor="let country of countries | paginate: { itemsPerPage: 8, currentPage: p }">
 
-    <section class="info" (click)="selectCountry(country.ccn3)" (click)="showDialogue()">
-      <img [src]="country.flags.png" alt="">
+    <section class="info">
+      <img (click)="selectCountry(country.ccn3)" (click)="showDialogue()" [src]="country.flags.png" alt="">
       <h3>{{country.name.common}}</h3>
+      <button (click)="addCountryToFavorites(country.ccn3)">Favorite</button>
     </section>
 
     <p-dialog *ngIf="selectedCountry" header="{{selectedCountry[0].name.common}}" [(visible)]="visible" [draggable]="false"  [style]="{width: '20vw'}">

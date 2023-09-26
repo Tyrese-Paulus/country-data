@@ -9,6 +9,7 @@ import { CardModule } from 'primeng/card';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CountryGridComponent } from './components/country-grid/country-grid.component';
+import { FavoriteGridComponent } from './components/favorite-grid/favorite-grid/favorite-grid.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
-    CountryGridComponent
+    CountryGridComponent,
+    FavoriteGridComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ import { FormsModule } from '@angular/forms';
     DialogModule,
     DropdownModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
   ,
