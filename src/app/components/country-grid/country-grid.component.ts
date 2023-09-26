@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { takeUntil } from 'rxjs';
-import { CountryService } from './../../services/country-service/country.service';
 import { Subject } from 'rxjs';
-
+import { CountryService } from './../../services/country-service/country.service';
+import { FavoriteService } from './../../services/favorite-service/favorite.service';
 
 @Component({
   selector: 'app-country-grid',
@@ -35,7 +35,9 @@ export class CountryGridComponent implements OnInit {
     {name: 'Antarctic', code: 'antarctic'},
     ];
 
-  constructor(private countryService: CountryService) { }
+  constructor(private countryService: CountryService, private favoriteService: FavoriteService) {
+    favoriteService.initFavoriteStorage();
+   }
 
   ngOnInit(): void{
     this.getCountries()
@@ -113,6 +115,13 @@ export class CountryGridComponent implements OnInit {
       this.countries = countryByCode
     })
 
+  }
+
+  addCountryToFavorites(favoriteCountryId: any){
+    const selectedFavorite= {
+      countryId: favoriteCountryId
+    }
+    this.favoriteService.setFav(selectedFavorite)
   }
 }
 

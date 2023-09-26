@@ -1,0 +1,20 @@
+<header>
+  <span routerLink="/">
+    Favorites
+  </span>
+</header>
+
+<article class="flags">
+
+  <section class="countries" *ngFor="let favorite of favCountryDetailed | paginate: { itemsPerPage: 8, currentPage: p }">
+
+    <section class="info">
+      <img [src]="favorite[0].flags.png" alt="">
+      <h3>{{favorite[0].name.common}}</h3>
+      <button (click)="deleteFavCountry(favorite[0].ccn3)">Delete</button>
+      <button>Details</button>
+    </section>
+
+  </section>
+</article>
+<pagination-controls class="page_controls" (pageChange)="p = $event"></pagination-controls>
