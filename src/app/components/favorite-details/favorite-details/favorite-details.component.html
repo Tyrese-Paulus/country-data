@@ -1,0 +1,88 @@
+<header>
+  <span routerLink="/">
+    Favorite-Details
+  </span>
+</header>
+
+<article class="favorite">
+  <section class="favorite_details">
+    <img [src]="selectedFav[0].flags.png" alt="">
+    <h3>{{selectedFav[0].name.common}}</h3>
+
+    <ul>
+
+      <li>
+        <span>Region:</span>
+        <span>{{selectedFav[0].region}}</span>
+      </li>
+
+      <li  *ngIf="fifa">
+        <span>Fifa Code:</span>
+        <span>{{selectedFav[0].fifa}}</span>
+      </li>
+
+      <li>
+        <span>Population:</span>
+        <span>{{selectedFav[0].population.toLocaleString('en')}}</span>
+      </li>
+
+      <li>
+        <span>Languages:</span>
+        <span>{{selectedLanguages}}</span>
+      </li>
+
+      <li>
+        <span>Time Zone:</span>
+        <span>{{selectedFav[0].timezones}}</span>
+      </li>
+
+      <li>
+        <span>Capital City:</span>
+        <span>{{selectedFav[0].capital}}</span>
+      </li>
+
+      <li>
+        <span>Currencies: </span>
+        <span>{{countryCurrencies}}</span>
+      </li>
+
+      <li>
+        <span>Map</span>
+        <a href="{{selectedFav[0].maps.googleMaps}}" target="_blank">GoogleMaps Link</a>
+      </li>
+
+
+    </ul>
+
+  </section>
+
+  <section class="favorite_comments">
+    <form [formGroup] = "form">
+      <div>
+        <label for="comment">Comment</label>
+        <input formControlName="comment" type="text" id="comment">
+      </div>
+      <div>
+        <label for="image">Image</label>
+        <input formControlName="image" type="text" id="comment">
+      </div>
+    </form>
+    <button (click)="onSubmit()">Post Comment</button>
+  </section>
+
+  <section class="comments">
+    <button (click)="getComments()">show comments</button>
+    <article *ngFor="let comment of comments">
+      <span>{{comment.comment}}</span>
+      <span>{{comment.image}}</span>
+      <div>
+        <span>{{comment.day}} </span>,
+        <span> {{comment.calDate}} </span>
+        <span> {{comment.month}} </span>
+        <span> {{comment.year}} </span>
+        <span> {{comment.time}} </span>
+      </div>
+    </article>
+  </section>
+
+</article>

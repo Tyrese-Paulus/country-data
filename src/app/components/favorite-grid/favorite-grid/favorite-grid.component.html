@@ -12,7 +12,7 @@
       <img [src]="favorite[0].flags.png" alt="">
       <h3>{{favorite[0].name.common}}</h3>
       <button (click)="deleteFavCountry(favorite[0].ccn3)">Delete</button>
-      <button>Details</button>
+      <button (click)="favDetails(favorite[0].ccn3)">Details</button>
     </section>
 
   </section>
