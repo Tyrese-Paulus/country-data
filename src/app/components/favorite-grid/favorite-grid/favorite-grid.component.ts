@@ -1,22 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { Subject } from 'rxjs';
+
 import { CountryService } from '../../../services/country-service/country.service';
 import { FavoriteService } from '../../../services/favorite-service/favorite.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favorite-grid',
   templateUrl: './favorite-grid.component.html',
   styleUrls: ['./favorite-grid.component.css']
 })
-export class FavoriteGridComponent {
+export class FavoriteGridComponent implements OnInit, OnDestroy {
 
   favCountryDetailed: any[] = [];
   p: number = 1;
+  endsubs$: Subject<any> = new Subject();
 
   constructor(private countryService: CountryService, private favoriteService: FavoriteService, private router: Router){}
 
   ngOnInit(): void {
     this.getFavDetails();
+  }
+
+  ngOnDestroy(): void {
+    this.endsubs$.next(true);
+    this.endsubs$.complete();
   }
 
   getFavDetails(){

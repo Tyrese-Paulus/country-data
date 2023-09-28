@@ -1,18 +1,19 @@
-import { FavoriteService } from './../../../services/favorite-service/favorite.service';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CountryService } from '../../../services/country-service/country.service';
-import { take, takeUntil, Subject } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { __values } from 'tslib';
 
+import { takeUntil, Subject } from 'rxjs';
+
+import { FavoriteService } from './../../../services/favorite-service/favorite.service';
+import { CountryService } from '../../../services/country-service/country.service';
 
 @Component({
   selector: 'app-favorite-details',
   templateUrl: './favorite-details.component.html',
   styleUrls: ['./favorite-details.component.css']
 })
-export class FavoriteDetailsComponent {
+export class FavoriteDetailsComponent implements OnInit, OnDestroy {
+
   endsubs$: Subject<any> = new Subject();
   form: FormGroup = new FormGroup({});
   selectedFavId: any;
@@ -29,9 +30,6 @@ export class FavoriteDetailsComponent {
   constructor(private route: ActivatedRoute, private countryService: CountryService, private formBuilder: FormBuilder, private favoriteService: FavoriteService ) {}
 
   ngOnInit(): void {
-
-
-
     this.favoriteService.initCommentSection();
 
     this.form = this.formBuilder.group({
@@ -41,6 +39,11 @@ export class FavoriteDetailsComponent {
 
     this.selectedFavId = this.route.snapshot.paramMap.get("id")
     this.getSelectedFav(this.selectedFavId)
+  }
+
+  ngOnDestroy(): void {
+    this.endsubs$.next(true);
+    this.endsubs$.complete();
   }
 
   getSelectedFav(favId: any){
@@ -70,26 +73,7 @@ export class FavoriteDetailsComponent {
       }
     })
 
-    console.log(this.comments);
-
   }
-
-  // getComments(){
-  //   this.favoriteService.commentSection$.pipe().subscribe((respCom: any) => {
-  //     this.comments = []
-  //     respCom.comments.forEach((comment: any) => {
-  //       for(let i=0;i < respCom.comments.length; i++){
-  //         const value = respCom.comments[i]
-  //         if(value.id === comment.id){
-  //           this.comments.push(value)
-  //         }
-  //       }
-  //     })
-  //   })
-
-  //   console.log(this.comments);
-
-  // }
 
   favComments(){
     this.favoriteService.getComments().pipe(takeUntil(this.endsubs$)).subscribe((favComment: any) => {
@@ -125,8 +109,23 @@ export class FavoriteDetailsComponent {
   onSubmit(){
     const newComment = this.form.value
     newComment.id = this.selectedFavId
-    // const UET = Date.now()
+
+    const newCommentWDate = this.getTime()
+    newComment.day = newCommentWDate.day;
+    newComment.calDate = newCommentWDate.calDate;
+    newComment.month = newCommentWDate.month;
+    newComment.year = newCommentWDate.year;
+    newComment.time = newCommentWDate.time;
+
+    this.addComment(newComment)
+    this.getComments()
+  }
+
+  getTime(){
     const date = new Date();
+
+    let dateObj:any = {};
+
     let day = date.getDay();
     let calDate = date.getDate();
     let month = date.getMonth();
@@ -201,25 +200,13 @@ export class FavoriteDetailsComponent {
         break;
     }
 
+    dateObj.day = dayOfWeek;
+    dateObj.calDate = calDate;
+    dateObj.month = monthOfYear;
+    dateObj.year = year;
+    dateObj.time = time;
 
-    newComment.day = dayOfWeek;
-    newComment.calDate = calDate;
-    newComment.month = monthOfYear;
-    newComment.year = year;
-    newComment.time = time;
-
-
-
-
-    // newComment.date = date;
-
-    // const options = {timeZone: 'Africa/Johannesburg'}
-
-    // const localDateString = date.toLocaleString('en-US', options)
-    // console.log(localDateString);
-
-    this.addComment(newComment)
-    this.getComments()
+    return dateObj
   }
 
   get favForm(){

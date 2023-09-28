@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ export class FavoriteService {
   favoriteList$: BehaviorSubject<any> = new BehaviorSubject(JSON.parse(localStorage.getItem('favorites') || '{}'))
   commentSection$: BehaviorSubject<any> = new BehaviorSubject(JSON.parse(localStorage.getItem('comments') || '{}'))
 
-  constructor() { }
+  constructor(private messageService: MessageService) { }
 
   initFavoriteStorage(){
 
@@ -43,9 +44,24 @@ export class FavoriteService {
     const favoriteList = JSON.parse(localStorage.getItem('favorites') || '{}');
     const favoriteExist = favoriteList.favorites.find((favorite: any) => favorite.countryId === country.countryId)
     if(favoriteExist){
-      alert('already favorite')
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Country already in favorites'
+      })
     }else{
       favoriteList.favorites.push(country)
+      this.messageService.add({
+        severity: 'success',
+        summary: 'success',
+        detail: 'Country added to Favorites'
+      }), () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Country not added to Favorites!'
+        })
+      }
     }
     const favJson = JSON.stringify(favoriteList)
     localStorage.setItem('favorites', favJson)
@@ -64,6 +80,13 @@ export class FavoriteService {
 
     const commentJSON = JSON.stringify(commentSection)
     localStorage.setItem('comments', commentJSON)
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'success',
+      detail: 'Comment posted'
+    })
+
     this.commentSection$.next(commentSection)
   }
 
@@ -75,6 +98,12 @@ export class FavoriteService {
 
     const favJsonString = JSON.stringify(favoriteList);
     localStorage.setItem('favorites', favJsonString)
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'success',
+      detail: 'Country removed from Favorites'
+    })
 
     this.favoriteList$.next(favoriteList)
   }
