@@ -6,12 +6,14 @@ import { Subject, BehaviorSubject } from 'rxjs';
 })
 export class FavoriteService {
   favoriteList$: BehaviorSubject<any> = new BehaviorSubject(JSON.parse(localStorage.getItem('favorites') || '{}'))
+  commentSection$: BehaviorSubject<any> = new BehaviorSubject(JSON.parse(localStorage.getItem('comments') || '{}'))
 
   constructor() { }
 
   initFavoriteStorage(){
+
     const favoriteList = JSON.parse(localStorage.getItem('favorites') || '{}');
-    console.log(favoriteList);
+
 
     if(Object.keys(favoriteList).length === 0){
       const initFav = {
@@ -19,6 +21,20 @@ export class FavoriteService {
       };
       const initialFavorites = JSON.stringify(initFav)
       localStorage.setItem('favorites', initialFavorites)
+    }
+
+  }
+
+  initCommentSection(){
+    const commentSection = JSON.parse(localStorage.getItem('comments') || '{}')
+
+    if(Object.keys(commentSection).length === 0){
+      const initComment = {
+        comments: []
+      }
+
+      const initialComments = JSON.stringify(initComment)
+      localStorage.setItem('comments', initialComments)
     }
 
   }
@@ -34,6 +50,21 @@ export class FavoriteService {
     const favJson = JSON.stringify(favoriteList)
     localStorage.setItem('favorites', favJson)
     this.favoriteList$.next(favoriteList);
+
+  }
+
+  getComments(){
+    const commentSection = JSON.parse(localStorage.getItem('comments') || '{}')
+    return commentSection.comments
+  }
+
+  postComment(comment: any){
+    const commentSection = JSON.parse(localStorage.getItem('comments') || '{}');
+    commentSection.comments.push(comment)
+
+    const commentJSON = JSON.stringify(commentSection)
+    localStorage.setItem('comments', commentJSON)
+    this.commentSection$.next(commentSection)
   }
 
   deleteFav(countryId: any){

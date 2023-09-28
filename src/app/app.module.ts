@@ -17,6 +17,8 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { FavoriteDetailsComponent } from './components/favorite-details/favorite-details/favorite-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     CountryGridComponent,
     FavoriteGridComponent,
+    FavoriteDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { FormsModule } from '@angular/forms';
     DropdownModule,
     InputTextModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
   ,
