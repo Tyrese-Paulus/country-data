@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <header>
   <span (click)="getCountries()">
     Country-Data
@@ -21,7 +23,8 @@
   <section class="countries" *ngFor="let country of countries | paginate: { itemsPerPage: 8, currentPage: p }">
 
     <section class="info">
-      <img (click)="selectCountry(country.ccn3)" (click)="showDialogue()" [src]="country.flags.png" alt="">
+      <img class="flag" (click)="selectCountry(country.ccn3)" (click)="showDialogue()" [src]="country.flags.png" onerror="this.style.display='none'">
+      <img class="coat" [src]="country.coatOfArms.png" onerror="this.style.display='none'">
       <h3>{{country.name.common}}</h3>
       <button (click)="addCountryToFavorites(country.ccn3)">Favorite</button>
     </section>

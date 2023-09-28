@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { takeUntil } from 'rxjs';
-import { Subject } from 'rxjs';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
+import { takeUntil, Subject } from 'rxjs';
+
 import { CountryService } from './../../services/country-service/country.service';
 import { FavoriteService } from './../../services/favorite-service/favorite.service';
+
 
 @Component({
   selector: 'app-country-grid',
   templateUrl: './country-grid.component.html',
   styleUrls: ['./country-grid.component.css']
 })
-export class CountryGridComponent implements OnInit {
+export class CountryGridComponent implements OnInit, OnDestroy  {
 
   endsubs$: Subject<any> = new Subject();
   countries: any = [] ;
@@ -41,6 +42,11 @@ export class CountryGridComponent implements OnInit {
 
   ngOnInit(): void{
     this.getCountries()
+  }
+
+  ngOnDestroy(): void {
+    this.endsubs$.next(true);
+    this.endsubs$.complete();
   }
 
   showDialogue(){
@@ -84,7 +90,6 @@ export class CountryGridComponent implements OnInit {
     })
 
   }
-
   getCountries(){
 
     this.countryService.getCountries().pipe(takeUntil(this.endsubs$)).subscribe((country) => {
