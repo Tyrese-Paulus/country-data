@@ -14,19 +14,15 @@ export class CountryGridComponent implements OnInit, OnDestroy  {
 
   endsubs$: Subject<any> = new Subject();
   countries: any = [] ;
-
   p: number = 1;
   visible: boolean = false;
-
   selectedCountry: any;
   selectedLanguages: any;
   selectedCurrencies: any;
   countryCurrencies: any = [];
-
   fifa: boolean = false;
   nameValue:any;
   fifaValue: any;
-
   regions: any = [
     {name: 'Africa', code: 'africa'},
     {name: 'Americas', code: 'americas'},
@@ -57,14 +53,14 @@ export class CountryGridComponent implements OnInit, OnDestroy  {
 
     this.countryService.getCountry(countryCode).pipe(takeUntil(this.endsubs$)).subscribe((country) => {
 
-      this.selectedCountry = country
-      this.getLanguages(this.selectedCountry[0].languages)
-      this.getCurrencies(this.selectedCountry[0].currencies)
+      this.selectedCountry = country;
+      this.getLanguages(this.selectedCountry[0].languages);
+      this.getCurrencies(this.selectedCountry[0].currencies);
 
       if(this.selectedCountry[0].fifa){
-        this.fifa = true
+        this.fifa = true;
       } else{
-        this.fifa = false
+        this.fifa = false;
       }
 
     })
@@ -72,19 +68,17 @@ export class CountryGridComponent implements OnInit, OnDestroy  {
   }
 
   getLanguages(languageObj: any){
-    this.selectedLanguages = Object.values(languageObj)
+    this.selectedLanguages = Object.values(languageObj);
   }
 
   getCurrencies(currencyObj: any){
 
-    this.selectedCurrencies = Object.values(currencyObj)
-
+    this.selectedCurrencies = Object.values(currencyObj);
     this.countryCurrencies = [];
-
     this.selectedCurrencies.forEach((currency: any) => {
       for (const property in currency){
         if( property === 'name'){
-          this.countryCurrencies.push(currency[property])
+          this.countryCurrencies.push(currency[property]);
         }
       }
     })
@@ -93,7 +87,7 @@ export class CountryGridComponent implements OnInit, OnDestroy  {
   getCountries(){
 
     this.countryService.getCountries().pipe(takeUntil(this.endsubs$)).subscribe((country) => {
-      this.countries = country
+      this.countries = country;
     })
 
   }
@@ -117,7 +111,7 @@ export class CountryGridComponent implements OnInit, OnDestroy  {
   getFifa(){
 
     this.countryService.getCountryFifa(this.fifaValue).pipe(takeUntil(this.endsubs$)).subscribe((countryByCode: any) => {
-      this.countries = countryByCode
+      this.countries = countryByCode;
     })
 
   }
@@ -126,7 +120,7 @@ export class CountryGridComponent implements OnInit, OnDestroy  {
     const selectedFavorite= {
       countryId: favoriteCountryId
     }
-    this.favoriteService.setFav(selectedFavorite)
+    this.favoriteService.setFav(selectedFavorite);
   }
 }
 

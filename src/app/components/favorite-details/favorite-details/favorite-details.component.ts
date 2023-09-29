@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Location } from '@angular/common'
 
 import { takeUntil, Subject } from 'rxjs';
 
@@ -27,7 +28,7 @@ export class FavoriteDetailsComponent implements OnInit, OnDestroy {
 
   fifa: boolean = false;
 
-  constructor(private route: ActivatedRoute, private countryService: CountryService, private formBuilder: FormBuilder, private favoriteService: FavoriteService ) {}
+  constructor(private route: ActivatedRoute, private location: Location, private countryService: CountryService, private formBuilder: FormBuilder, private favoriteService: FavoriteService ) {}
 
   ngOnInit(): void {
     this.favoriteService.initCommentSection();
@@ -46,6 +47,10 @@ export class FavoriteDetailsComponent implements OnInit, OnDestroy {
     this.endsubs$.complete();
   }
 
+  back(): void {
+    this.location.back()
+  }
+
   getSelectedFav(favId: any){
     this.countryService.getCountry(favId).pipe(takeUntil(this.endsubs$)).subscribe((fav) => {
       this.selectedFav = fav;
@@ -60,6 +65,7 @@ export class FavoriteDetailsComponent implements OnInit, OnDestroy {
 
     })
   }
+
 
   getComments(){
     this.favoriteService.commentSection$.pipe().subscribe((respCom: any) => {
