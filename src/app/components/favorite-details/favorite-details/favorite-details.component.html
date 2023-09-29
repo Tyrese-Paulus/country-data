@@ -6,77 +6,86 @@
   </span>
 </header>
 
+<button class="back" (click)="back()">Back</button>
+
 <article class="favorite">
   <section class="favorite_details">
+
+   <div class="favorite_img">
     <img [src]="selectedFav[0].flags.png" alt="">
+   </div>
+
+
+
+   <div class="favorite_info">
+
     <h3>{{selectedFav[0].name.common}}</h3>
 
     <ul>
 
       <li>
-        <span>Region:</span>
-        <span>{{selectedFav[0].region}}</span>
+        <span class="labels">Region:</span>
+        <span> {{selectedFav[0].region}}</span>
       </li>
 
       <li  *ngIf="fifa">
-        <span>Fifa Code:</span>
-        <span>{{selectedFav[0].fifa}}</span>
+        <span class="labels">Fifa Code:</span>
+        <span> {{selectedFav[0].fifa}}</span>
       </li>
 
       <li>
-        <span>Population:</span>
-        <span>{{selectedFav[0].population.toLocaleString('en')}}</span>
+        <span class="labels">Population:</span>
+        <span> {{selectedFav[0].population.toLocaleString('en')}}</span>
       </li>
 
       <li>
-        <span>Languages:</span>
-        <span>{{selectedLanguages}}</span>
+        <span class="labels">Languages:</span>
+        <span> {{selectedLanguages}}</span>
       </li>
 
       <li>
-        <span>Time Zone:</span>
-        <span>{{selectedFav[0].timezones}}</span>
+        <span class="labels">Time Zone:</span>
+        <span> {{selectedFav[0].timezones}}</span>
       </li>
 
       <li>
-        <span>Capital City:</span>
-        <span>{{selectedFav[0].capital}}</span>
+        <span class="labels">Capital City:</span>
+        <span> {{selectedFav[0].capital}}</span>
       </li>
 
       <li>
-        <span>Currencies: </span>
-        <span>{{countryCurrencies}}</span>
+        <span class="labels">Currencies: </span>
+        <span> {{countryCurrencies}}</span>
       </li>
 
       <li>
-        <span>Map</span>
-        <a href="{{selectedFav[0].maps.googleMaps}}" target="_blank">GoogleMaps Link</a>
+        <span class="labels">Map:</span>
+        <a href="{{selectedFav[0].maps.googleMaps}}" target="_blank"> GoogleMaps Link</a>
       </li>
-
 
     </ul>
+
+   </div>
+
 
   </section>
 
   <section class="favorite_comments">
     <form [formGroup] = "form">
       <div>
-        <label for="comment">Comment</label>
-        <input formControlName="comment" type="text" id="comment">
+        <input formControlName="comment" placeholder="Post a comment" type="text" id="comment">
       </div>
       <div>
-        <label for="image">Image</label>
-        <input formControlName="image" type="text" id="comment">
+        <input formControlName="image" placeholder="Add an image URL to the comment" type="text" id="comment">
       </div>
     </form>
     <button (click)="onSubmit()">Post Comment</button>
+    <button (click)="getComments()">show comments</button>
   </section>
 
   <section class="comments">
-    <button (click)="getComments()">show comments</button>
     <article *ngFor="let comment of comments">
-      <span>{{comment.comment}}</span>
-      <span>{{comment.image}}</span>
+      <span class="comment_content">{{comment.comment}}</span>
       <div>
         <span>{{comment.day}} </span>,
         <span> {{comment.calDate}} </span>
@@ -84,6 +93,7 @@
         <span> {{comment.year}} </span>
         <span> {{comment.time}} </span>
       </div>
+      <img [src]="comment.image" onerror="this.style.display='none'"/>
     </article>
   </section>
 

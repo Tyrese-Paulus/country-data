@@ -1,8 +1,8 @@
 header{
   height: 60px;
   width: 100%;
-  background-color: #339DFF;
-  color: #fff;
+  background-color: rgb(220,220,220);
+  color: black;
   margin: 0;
   display: flex;
   justify-content: left;
@@ -15,12 +15,29 @@ header span {
   cursor: pointer;
 }
 
-.flags{
+.back{
+  position: absolute;
+  right: 0;
   margin-top: 20px;
+  margin-right: 10px;
+  display: inline-block;
+  background: #FEBE10;
+  color: black;
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 50px;
+  width: 50px;
+  text-align: center;
+  border: none;
+}
+
+.flags{
+  margin-top: 100px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 20vw);
   grid-gap: 20px;
+  margin-bottom: 50px;
 }
 
 .info{
@@ -36,13 +53,121 @@ header span {
 }
 
 .info h3{
-  font-family: Arial, sans-serif;
-  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
+.countries button {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.delete{
+  display: inline-block;
+  background: #D2122E;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 50px;
+  width: 60px;
+  text-align: center;
+  border: none;
+}
+
+.details{
+  display: inline-block;
+  background: #339DFF;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  border-radius: 50px;
+  width: 60px;
+  text-align: center;
+  border: none;
+}
+
+.info h3{
+  text-align: center;
 }
 
 .page_controls{
-  font-family: sans-serif;
+  margin-top: 20px;
   font-size: 13px;
   text-align: center;
+}
+
+@media screen and (max-width: 1280px) {
+  .flags{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info{
+    height: 260px;
+  }
+
+  .info img{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  .button{
+    line-height: 15px;
+  }
+
+  .delete{
+    line-height: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flags{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info{
+    height: 260px;
+  }
+
+  .info img{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  .button{
+    line-height: 15px;
+  }
+
+  .delete{
+    line-height: 15px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .flags{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info{
+    height: 260px;
+  }
+
+  .info img{
+    width: 100%;
+    height: 80%;
+    object-fit: contain;
+  }
+
+  .button{
+    line-height: 15px;
+  }
+
+  .delete{
+    line-height: 15px;
+  }
 }

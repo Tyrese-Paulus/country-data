@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common'
 
 import { Subject } from 'rxjs';
 
@@ -17,7 +18,7 @@ export class FavoriteGridComponent implements OnInit, OnDestroy {
   p: number = 1;
   endsubs$: Subject<any> = new Subject();
 
-  constructor(private countryService: CountryService, private favoriteService: FavoriteService, private router: Router){}
+  constructor(private countryService: CountryService, private location: Location, private favoriteService: FavoriteService, private router: Router){}
 
   ngOnInit(): void {
     this.getFavDetails();
@@ -26,6 +27,10 @@ export class FavoriteGridComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.endsubs$.next(true);
     this.endsubs$.complete();
+  }
+
+  back(): void {
+    this.location.back()
   }
 
   getFavDetails(){

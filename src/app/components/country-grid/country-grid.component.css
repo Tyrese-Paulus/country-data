@@ -4,6 +4,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 20vw);
   grid-gap: 20px;
+  margin-bottom: 50px;
 }
 
 .info{
@@ -31,8 +32,29 @@
 }
 
 .info h3{
-  font-family: Arial, sans-serif;
   text-align: center;
+}
+
+.info button{
+  display: inline-block;
+  background: #339DFF;
+  color: #fff;
+  text-decoration: none;
+  font-size: 13px;
+  line-height: 25px;
+  border-radius: 50px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100px;
+  text-align: center;
+  border: none;
+}
+
+.info button:hover {
+  background: #fff;
+  color: #339DFF;
+  box-shadow: 0 4px 4px rgba(83, 100, 255, 0.32);
+  cursor: pointer;
 }
 
 .navigation{
@@ -52,7 +74,6 @@
 }
 
 .navigation button {
-  font-family: sans-serif;
   display: inline-block;
   background: #339DFF;
   color: #fff;
@@ -79,7 +100,6 @@
 }
 
 .countries li{
-  /* font-family: Arial, sans-serif; */
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -94,16 +114,16 @@
 }
 
 .page_controls{
-  font-family: sans-serif;
   font-size: 13px;
   text-align: center;
+  margin-top: 10px;
 }
 
 header{
   height: 60px;
   width: 100%;
-  background-color: #339DFF;
-  color: #fff;
+  background-color: rgb(220,220,220);
+  color: black;
   margin: 0;
   display: flex;
   justify-content: left;
@@ -114,4 +134,156 @@ header span {
   margin-top: auto;
   margin-bottom: auto;
   cursor: pointer;
+}
+
+
+@media screen and (max-width: 1280px) {
+  .flags{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info{
+    height: 260px;
+  }
+
+  .flag{
+    width: 100%;
+    height: 80%;
+    object-fit: fill;
+  }
+
+  .coat{
+    position: absolute;
+    width: 20%;
+    height: 21%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .navigation{
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .navigation input{
+    border-radius: 5px;
+    width: 250px;
+  }
+
+  .navigation p-dropdown, input, button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .navigation button {
+    line-height: 30px;
+  }
+
+  .info button{
+    line-height: 15px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flags{
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .info{
+    height: 260px;
+  }
+
+  .flag{
+    width: 100%;
+    height: 80%;
+    object-fit: fill;
+  }
+
+  .coat{
+    position: absolute;
+    width: 20%;
+    height: 21%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .navigation{
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .navigation input{
+    border-radius: 5px;
+    width: 250px;
+  }
+
+  .navigation p-dropdown, input, button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .navigation button {
+    line-height: 30px;
+  }
+
+  .info button{
+    line-height: 15px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .flags{
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .info{
+    height: 260px;
+  }
+
+  .flag{
+    width: 100%;
+    height: 80%;
+    object-fit: fill;
+  }
+
+  .coat{
+    position: absolute;
+    width: 20%;
+    height: 21%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  .navigation{
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .navigation input{
+    border-radius: 5px;
+    width: 250px;
+  }
+
+  .navigation p-dropdown, input, button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .navigation button {
+    line-height: 30px;
+  }
+
+  .info button{
+    line-height: 15px;
+  }
 }
